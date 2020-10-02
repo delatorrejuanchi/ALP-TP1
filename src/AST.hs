@@ -2,8 +2,9 @@ module AST where
 
 
 {- Sintaxis Abstracta:
-intexp ::= intassgn | intexp , intassgn | var = intassgn
-intassgn ::= var = intassgn | intterm
+intexp ::= intseq
+intseq ::= intassgn | intseq , intassgn
+intassgn ::= intterm | var = intassgn
 intterm ::= intterm +- intfactor
 intfactor ::=
 
