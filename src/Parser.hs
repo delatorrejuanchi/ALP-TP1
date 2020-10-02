@@ -48,17 +48,17 @@ p <#> q = try p <|> q
 --- Parser de expressiones enteras
 -----------------------------------
 intexp :: Parser (Exp Int)
-intexp = intseq
+intexp = intterm
 
-intseq :: Parser (Exp Int)
-intseq = chainl1 intassgn (reservedOp lis "," >> return ESeq)
+-- intseq :: Parser (Exp Int)
+-- intseq = chainl1 intassgn (reservedOp lis "," >> return ESeq)
 
-intassgn :: Parser (Exp Int)
-intassgn = do v <- identifier lis
-              reservedOp lis "="
-              e <- intassgn
-              return (EAssgn (Var v) e)
-              <#> intterm
+-- intassgn :: Parser (Exp Int)
+-- intassgn = do v <- identifier lis
+--               reservedOp lis "="
+--               e <- intassgn
+--               return (EAssgn (Var v) e)
+--               <#> intterm
 
 intterm :: Parser (Exp Int)
 intterm = chainl1 intfactor ((reservedOp lis "+" >> return Plus) <#>
@@ -69,7 +69,7 @@ intfactor = chainl1 intatom ((reservedOp lis "*" >> return Times) <#>
                              (reservedOp lis "/" >> return Div))
 
 intatom :: Parser (Exp Int)
-intatom = parens lis intexp
+intatom = parens lis intterm
           <#>
           do reservedOp lis "-"
              n <- intatom
@@ -81,20 +81,72 @@ intatom = parens lis intexp
           do v <- identifier lis
              return (Var v)
 
-
 -----------------------------------
 --- Parser de expressiones booleanas
 ------------------------------------
 
 boolexp :: Parser (Exp Bool)
-boolexp = undefined
+boolexp = boolor
+
+boolor :: Parser (Exp Bool)
+boolor = chainl1 booland (reservedOp lis "||" >> return Or)
+
+booland :: Parser (Exp Bool)
+booland = chainl1 boolval (reservedOp lis "&&" >> return And)
+
+boolval :: Parser (Exp Bool)
+boolval = parens lis boolexp
+          <#>
+          do reservedOp lis "!"
+             b <- boolexp
+             return (Not b)
+          <#>
+          (reserved lis "true" >> return BTrue)
+          <#>
+          (reserved lis "false" >> return BFalse)
+          <#>
+          do e1 <- intexp
+             comp <- boolcomp
+             e2 <- intexp
+             return (comp e1 e2)
+
+boolcomp :: Parser (Exp Int -> Exp Int -> Exp Bool)
+boolcomp = (reservedOp lis "<" >> return Lt) <#>
+           (reservedOp lis ">" >> return Gt) <#>
+           (reservedOp lis "==" >> return Eq) <#>
+           (reservedOp lis "!=" >> return NEq)
 
 -----------------------------------
 --- Parser de comandos
 -----------------------------------
 
 comm :: Parser Comm
-comm = undefined
+comm = commseq
+
+commseq :: Parser Comm
+commseq = chainl1 commatom (reservedOp lis ";" >> return Seq)
+
+commatom = (reserved lis "skip" >> return Skip)
+          <#>
+          do var <- identifier lis
+             reservedOp lis "="
+             e1 <- intexp
+             return (Let var e1)
+          <#>
+          do reserved lis "if"
+             b <- boolexp
+             c1 <- braces lis comm
+             do reserved lis "else"
+                c2 <- braces lis comm
+                return (IfThenElse b c1 c2)
+                <#>
+                return (IfThen b c1)
+          <#>
+          do reserved lis "while"
+             b <- boolexp
+             c <- braces lis comm
+             return (While b c)
+
 
 ------------------------------------
 -- Función de parseo

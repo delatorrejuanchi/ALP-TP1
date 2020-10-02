@@ -1,7 +1,7 @@
 /home/delatorrejuanchi/workspace/ALP/TP1/TP1/src/Parser.hs:
-  hash: a62331c9d1660c76e76d98cbf84b7fbe1b0621f64f54f851ae9b2b07b0e80cae
-  size: 2722
-  modtime: 1601586794
+  hash: f308e7f2d36bcbdb4f7f1610b3bc142f789c0031c3b8eea1c6ac5376de66e827
+  size: 4282
+  modtime: 1601633997
 /home/delatorrejuanchi/workspace/ALP/TP1/TP1/ChangeLog.md:
   hash: d671c1d73cb79102b61920326ee7d43c81e9d4d770677cfaccbcfd6c725e41a9
   size: 43
@@ -11,13 +11,13 @@
   size: 1384
   modtime: 1601563245
 /home/delatorrejuanchi/workspace/ALP/TP1/TP1/src/Eval2.hs:
-  hash: 7b4197370b6ed34ebe9b10146ba1f22ae0e9eac61c41b0a5442dcc8d77d6db7a
-  size: 1209
-  modtime: 1601563245
+  hash: cbbf6ceda5c8d3636ac2446fee5496d8a046deabbfefcad0a048b5010065edd1
+  size: 4177
+  modtime: 1601641117
 /home/delatorrejuanchi/workspace/ALP/TP1/TP1/src/Eval1.hs:
-  hash: 8c41824cc439077b5a1b5e472b26a777bbdeacf6c76bf00b2000c09ebc7ac7ca
-  size: 1133
-  modtime: 1601563245
+  hash: 9fd3d22ec38c63e0da2c6d0900a82dd6a09fe7af826bde6a9a7670f6ea3570ad
+  size: 3586
+  modtime: 1601640758
 /home/delatorrejuanchi/workspace/ALP/TP1/TP1/README.md:
   hash: ea60c288f6932e34e269e17df780c0c805d9ade594b18b292dad2ea0777ffb6a
   size: 9922
@@ -27,9 +27,9 @@
   size: 1143
   modtime: 1601563245
 /home/delatorrejuanchi/workspace/ALP/TP1/TP1/src/AST.hs:
-  hash: d3642b852b30c9f74c571f3d5da226806a539da63e813aa1e2c6ead57f97a164
-  size: 2736
-  modtime: 1601573830
+  hash: 5c742caf3e433f5e33e961e19c19c681f3f8c47e2155a44074bfe3ca32cbd32c
+  size: 3312
+  modtime: 1601638129
 /home/delatorrejuanchi/workspace/ALP/TP1/TP1/src/PPLis.hs:
   hash: 7c2da4aaa719d489c6b6dbd712d33f8763ce128abc4d91811c18a6c778d216d9
   size: 1724

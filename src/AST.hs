@@ -1,11 +1,39 @@
 module AST where
 
+
 {- Sintaxis Abstracta:
+intexp ::= intassgn | intexp , intassgn | var = intassgn
+intassgn ::= var = intassgn | intterm
+intterm ::= intterm +- intfactor
+intfactor ::=
+
+boolexp ::= boolor
+
+boolor  ::= booland
+        ::= booland ∨ booland
+
+booland ::= boolneg
+        ::= boolneg ∧ boolneg
+
+boolneg ::= boolcomp
+        ::= ¬ booolcomp
+
+boolcomp ::= true | false
+         ::= intexp (== | != | < | >) intexp
+
+comm' ::= comm'; comm
+comm ::= skip
+        | var = intexp
+        | if boolexp then comm else comm
+        | while boolexp do comm
+
 intexp ::= nat | var | −u intexp
           | intexp + intexp
           | intexp −b intexp
           | intexp × intexp
           | intexp ÷ intexp
+          | var = intexp
+          | intexp , intexp
 boolexp ::= true | false
           | intexp == intexp
           | intexp != intexp
