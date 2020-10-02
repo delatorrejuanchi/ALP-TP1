@@ -48,7 +48,7 @@ p <#> q = try p <|> q
 --- Parser de expressiones enteras
 -----------------------------------
 intexp :: Parser (Exp Int)
-intexp = intterm
+intexp = intseq
 
 intseq :: Parser (Exp Int)
 intseq = chainl1 intassgn (reservedOp lis "," >> return ESeq)
