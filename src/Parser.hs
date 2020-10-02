@@ -50,15 +50,15 @@ p <#> q = try p <|> q
 intexp :: Parser (Exp Int)
 intexp = intterm
 
--- intseq :: Parser (Exp Int)
--- intseq = chainl1 intassgn (reservedOp lis "," >> return ESeq)
+intseq :: Parser (Exp Int)
+intseq = chainl1 intassgn (reservedOp lis "," >> return ESeq)
 
--- intassgn :: Parser (Exp Int)
--- intassgn = do v <- identifier lis
---               reservedOp lis "="
---               e <- intassgn
---               return (EAssgn (Var v) e)
---               <#> intterm
+intassgn :: Parser (Exp Int)
+intassgn = do v <- identifier lis
+              reservedOp lis "="
+              e <- intassgn
+              return (EAssgn v e)
+              <#> intterm
 
 intterm :: Parser (Exp Int)
 intterm = chainl1 intfactor ((reservedOp lis "+" >> return Plus) <#>
@@ -92,10 +92,10 @@ boolor :: Parser (Exp Bool)
 boolor = chainl1 booland (reservedOp lis "||" >> return Or)
 
 booland :: Parser (Exp Bool)
-booland = chainl1 boolval (reservedOp lis "&&" >> return And)
+booland = chainl1 boolatom (reservedOp lis "&&" >> return And)
 
-boolval :: Parser (Exp Bool)
-boolval = parens lis boolexp
+boolatom :: Parser (Exp Bool)
+boolatom = parens lis boolexp
           <#>
           do reservedOp lis "!"
              b <- boolexp
@@ -126,6 +126,7 @@ comm = commseq
 commseq :: Parser Comm
 commseq = chainl1 commatom (reservedOp lis ";" >> return Seq)
 
+commatom :: Parser Comm
 commatom = (reserved lis "skip" >> return Skip)
           <#>
           do var <- identifier lis

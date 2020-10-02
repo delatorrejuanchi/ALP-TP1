@@ -1,6 +1,5 @@
 module AST where
 
-
 {- Sintaxis Abstracta:
 intexp ::= intseq
 intseq ::= intassgn | intseq , intassgn
@@ -92,7 +91,7 @@ data Exp a where
   Minus ::Exp Int -> Exp Int -> Exp Int
   Times ::Exp Int -> Exp Int -> Exp Int
   Div ::Exp Int -> Exp Int -> Exp Int
-  EAssgn ::Exp Int -> Exp Int -> Exp Int
+  EAssgn ::Variable -> Exp Int -> Exp Int
   ESeq ::Exp Int -> Exp Int -> Exp Int
   -- Expreseiones booleanas
   BTrue ::Exp Bool

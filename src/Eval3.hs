@@ -78,8 +78,11 @@ evalExp (Div e0 e1) s = do (nv0 :!: s') <- evalExp e0 s
                            (nv1 :!: s'') <- evalExp e1 s'
                            case nv1 of 0 -> Left DivByZero
                                        _ -> return (div nv0 nv1 :!: addWork 2 s'')
-evalExp (EAssgn _ _) s = undefined
-evalExp (ESeq _ _) s = undefined
+evalExp (EAssgn v e) s = do (nv :!: s') <- evalExp e s
+                            return (nv :!: update v nv s')
+evalExp (ESeq e0 e1) s = do (_ :!: s') <- evalExp e0 s
+                            (nv :!: s'') <- evalExp e1 s'
+                            return (nv :!: s'')
 -- Binary
 evalExp BTrue s = return (True :!: s)
 evalExp BFalse s = return (False :!: s)

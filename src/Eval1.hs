@@ -49,6 +49,7 @@ stepComm (IfThenElse b c0 c1) s = (if bv then c0 else c1) :!: s'
                                   where (bv :!: s') = evalExp b s
 stepComm w@(While b c) s = (if bv then Seq c w else Skip) :!: s'
                            where (bv :!: s') = evalExp b s
+
 -- Evalua una expresion
 -- Completar la definición
 evalExp :: Exp a -> State -> Pair a State
@@ -68,8 +69,9 @@ evalExp (Times e0 e1) s = n0 * n1 :!: s''
 evalExp (Div e0 e1) s = div n0 n1 :!: s''
                         where (n0 :!: s') = evalExp e0 s
                               (n1 :!: s'') = evalExp e1 s'
-evalExp (EAssgn _ _) s = undefined
-evalExp (ESeq _ _) s = undefined
+evalExp (EAssgn v e) s = nv :!: update v nv s'
+                         where (nv :!: s') = evalExp e s
+evalExp (ESeq e0 e1) s = evalExp e1 $ Data.Strict.Tuple.snd $ evalExp e0 s
 -- Binary
 evalExp BTrue s = True :!: s
 evalExp BFalse s = False :!: s

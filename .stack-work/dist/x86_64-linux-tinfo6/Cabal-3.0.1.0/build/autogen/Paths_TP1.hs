@@ -29,12 +29,12 @@ version :: Version
 version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "/home/delatorrejuanchi/workspace/ALP/TP1/TP1/.stack-work/install/x86_64-linux-tinfo6/b5ff5ee54d51eab906709f707fc94fcc739d4dc6e8b4b5b32cd13eaf86ad66d1/8.8.3/bin"
-libdir     = "/home/delatorrejuanchi/workspace/ALP/TP1/TP1/.stack-work/install/x86_64-linux-tinfo6/b5ff5ee54d51eab906709f707fc94fcc739d4dc6e8b4b5b32cd13eaf86ad66d1/8.8.3/lib/x86_64-linux-ghc-8.8.3/TP1-0.1.0.0-Jb3fQuRG8SO5hPu3thChUC"
-dynlibdir  = "/home/delatorrejuanchi/workspace/ALP/TP1/TP1/.stack-work/install/x86_64-linux-tinfo6/b5ff5ee54d51eab906709f707fc94fcc739d4dc6e8b4b5b32cd13eaf86ad66d1/8.8.3/lib/x86_64-linux-ghc-8.8.3"
-datadir    = "/home/delatorrejuanchi/workspace/ALP/TP1/TP1/.stack-work/install/x86_64-linux-tinfo6/b5ff5ee54d51eab906709f707fc94fcc739d4dc6e8b4b5b32cd13eaf86ad66d1/8.8.3/share/x86_64-linux-ghc-8.8.3/TP1-0.1.0.0"
-libexecdir = "/home/delatorrejuanchi/workspace/ALP/TP1/TP1/.stack-work/install/x86_64-linux-tinfo6/b5ff5ee54d51eab906709f707fc94fcc739d4dc6e8b4b5b32cd13eaf86ad66d1/8.8.3/libexec/x86_64-linux-ghc-8.8.3/TP1-0.1.0.0"
-sysconfdir = "/home/delatorrejuanchi/workspace/ALP/TP1/TP1/.stack-work/install/x86_64-linux-tinfo6/b5ff5ee54d51eab906709f707fc94fcc739d4dc6e8b4b5b32cd13eaf86ad66d1/8.8.3/etc"
+bindir     = "/home/delatorrejuanchi/workspace/ALP/TP1/TP1/.stack-work/install/x86_64-linux-tinfo6/de991a19699b758f32552dad8c0539fe8dc826aabb6edaa1ee33489f55bedd1c/8.8.3/bin"
+libdir     = "/home/delatorrejuanchi/workspace/ALP/TP1/TP1/.stack-work/install/x86_64-linux-tinfo6/de991a19699b758f32552dad8c0539fe8dc826aabb6edaa1ee33489f55bedd1c/8.8.3/lib/x86_64-linux-ghc-8.8.3/TP1-0.1.0.0-Jb3fQuRG8SO5hPu3thChUC"
+dynlibdir  = "/home/delatorrejuanchi/workspace/ALP/TP1/TP1/.stack-work/install/x86_64-linux-tinfo6/de991a19699b758f32552dad8c0539fe8dc826aabb6edaa1ee33489f55bedd1c/8.8.3/lib/x86_64-linux-ghc-8.8.3"
+datadir    = "/home/delatorrejuanchi/workspace/ALP/TP1/TP1/.stack-work/install/x86_64-linux-tinfo6/de991a19699b758f32552dad8c0539fe8dc826aabb6edaa1ee33489f55bedd1c/8.8.3/share/x86_64-linux-ghc-8.8.3/TP1-0.1.0.0"
+libexecdir = "/home/delatorrejuanchi/workspace/ALP/TP1/TP1/.stack-work/install/x86_64-linux-tinfo6/de991a19699b758f32552dad8c0539fe8dc826aabb6edaa1ee33489f55bedd1c/8.8.3/libexec/x86_64-linux-ghc-8.8.3/TP1-0.1.0.0"
+sysconfdir = "/home/delatorrejuanchi/workspace/ALP/TP1/TP1/.stack-work/install/x86_64-linux-tinfo6/de991a19699b758f32552dad8c0539fe8dc826aabb6edaa1ee33489f55bedd1c/8.8.3/etc"
 
 getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "TP1_bindir") (\_ -> return bindir)
