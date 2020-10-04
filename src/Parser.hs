@@ -69,18 +69,17 @@ intfactor = chainl1 intatom ((reservedOp lis "*" >> return Times) <#>
                              (reservedOp lis "/" >> return Div))
 
 intatom :: Parser (Exp Int)
-intatom = parens lis intterm -- intterm vs intexp (permitir x = y = (z = 3, 4) ???)
-          <#>
-          do reservedOp lis "-"
-             n <- intatom
-             return (UMinus n)
+intatom = parens lis intexp
           <#>
           do n <- integer lis
              return (Const (fromIntegral n))
           <#>
           do v <- identifier lis
              return (Var v)
-
+          <#>
+          do reservedOp lis "-"
+             n <- intexp
+             return (UMinus n)
 -----------------------------------
 --- Parser de expressiones booleanas
 ------------------------------------

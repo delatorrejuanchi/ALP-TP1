@@ -5,7 +5,7 @@ intexp ::= intseq
 intseq ::= intassgn | intseq , intassgn
 intassgn ::= intterm | var = intassgn
 intterm ::= intterm +- intfactor
-intfactor ::=
+intfactor ::= nat | var | -intexp           | (intexp) no sé si va en la abstracta el tema de los parentesis?????????
 
 boolexp ::= boolor
 
