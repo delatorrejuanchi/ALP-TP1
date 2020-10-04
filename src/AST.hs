@@ -28,55 +28,48 @@ comm ::= skip
         | if boolexp then comm else comm
         | while boolexp do comm
 
-intexp ::= nat | var | −u intexp
-          | intexp + intexp
-          | intexp −b intexp
-          | intexp × intexp
-          | intexp ÷ intexp
-          | var = intexp
-          | intexp , intexp
-boolexp ::= true | false
-          | intexp == intexp
-          | intexp != intexp
-          | intexp < intexp
-          | intexp > intexp
-          | boolexp ∧ boolexp
-          | boolexp ∨ boolexp
-          | ¬ boolexp
-comm ::= skip
-        | var = intexp
-        | comm; comm
-        | if boolexp then comm else comm
-        | while boolexp do comm
 
    Sintaxis Concreta:
+
 digit ::= ’0’ | ’1’ | · · · | ’9’
 letter ::= ’a’ | · · · | ’Z’
 nat ::= digit | digit nat
 var ::= letter | letter var
-intexp ::= nat
-          | var
-          | ’-’ intexp
-          | intexp ’+’ intexp
-          | intexp ’-’ intexp
-          | intexp ’*’ intexp
-          | intexp ’/’ intexp
-          | ’(’ intexp ’)’
-boolexp ::= ’true’ | ’false’
-          | intexp ’==’ intexp
-          | intexp ’!=’ intexp
-          | intexp ’<’ intexp
-          | intexp ’>’ intexp
-          | boolexp ’&&’ boolexp
-          | boolexp ’||’ boolexp
-          | ’!’ boolexp
-          | ’(’ boolexp ’)’
-comm ::= skip
-        | var ’=’ intexp
-        | comm ’;’ comm
+
+intexp ::= intseq
+intseq ::= intassgn | intseq ',' intassgn
+intassgn ::= intterm | var '=' intassgn
+intterm ::= intterm '+-' intfactor
+intfactor ::= intfactor '*/' intatom
+intatom ::= nat | var | '-' intexp | '(' intexp ')' 
+
+boolexp ::= boolor
+
+boolor  ::= booland
+        ::= booland '||' booland
+
+booland ::= boolneg
+        ::= boolneg '&&' boolneg
+
+boolneg ::= boolcomp
+        ::= '!' booolcomp
+
+boolcomp ::= 'true'
+           | 'false'
+           | intexp '==' intexp
+           | intexp '!=' intexp
+           | intexp '<' intexp
+           | intexp '>' intexp
+           | '(' boolexp ')'
+           | '!' boolexp
+
+comm' ::= comm'; comm
+comm ::= 'skip'
+        | var '=' intexp
         | ’if’ boolexp ’{’ comm ’}’
         | ’if’ boolexp ’{’ comm ’}’ ’else’ ’{’ comm ’}’
         | ’while’ boolexp ’{’ comm ’}’
+        
 -}
 
 -- Identificadores de Variable
