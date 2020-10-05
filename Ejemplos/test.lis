@@ -1,1 +1,1 @@
-w = 4, x = y = (z = 3, z = 4, 5)
+if !true || true { x = 1 } else { x = 0 }

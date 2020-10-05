@@ -97,7 +97,7 @@ boolatom :: Parser (Exp Bool)
 boolatom = parens lis boolexp
           <#>
           do reservedOp lis "!"
-             b <- boolexp
+             b <- boolatom
              return (Not b)
           <#>
           (reserved lis "true" >> return BTrue)
